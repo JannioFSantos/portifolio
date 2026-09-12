@@ -4,8 +4,6 @@ Este projeto é um portfólio profissional criado com Python e Flask para aprese
 
 ## Sobre o projeto
 
-A aplicação foi desenvolvida para funcionar como uma landing page moderna de apresentação pessoal, com:
-
 - seção de apresentação profissional
 - destaque para projetos em destaque
 - lista de tecnologias e stack
@@ -49,24 +47,9 @@ A aplicação ficará disponível em:
 ```text
 http://localhost:5000
 ```
-
-## Deploy no Coolify
-
-Para usar em um ambiente de produção no Coolify, o projeto já foi ajustado para ler a porta via variável de ambiente `PORT`.
-
-Exemplo de configuração no painel do Coolify:
-
-- Build command: `pip install -r requirements.txt`
-- Start command: `python app.py`
-- Porta: `5000` ou use a variável `PORT` do ambiente
-
-## Personalização
-
-Você pode alterar facilmente:
-
-- nome, bio e links de contato em `templates/index.html`
-- dados dos projetos em `app.py`
-- estilo visual em `static/css/style.css`
+'''link
+https://kbagxrga48mrs0tohejkcvad.147.15.20.85.sslip.io/#
+'''
 
 ## Autor
 
