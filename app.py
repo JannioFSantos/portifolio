@@ -7,7 +7,7 @@ app = Flask(__name__)
 PROFILE = {
     "name": "Jannio F. Santos",
     "role": "Desenvolvedor Full Stack · Python · Automação · Sistemas Web",
-    "email": "jannio.santos.dev@gmail.com",
+    "email": "jannioferreira@gmail.com",
     "github": "https://github.com/JannioFSantos",
     "linkedin": "https://www.linkedin.com/in/janniofsantos",
 }
