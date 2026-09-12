@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Portfólio</title>
+    <meta
+      name="description"
+      content="Portfólio pessoal com projetos públicos em Python e desenvolvimento web."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav container">
+        <div class="brand">{{ profile.name }}</div>
+        <div class="nav-links">
+          <a href="#sobre">Sobre</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </nav>
+
+      <div class="hero-content container">
+        <div class="hero-text">
+          <span class="eyebrow">{{ profile.role }}</span>
+          <h1>Transformo ideias em projetos funcionais e impactantes.</h1>
+          <p>
+            Sou apaixonado por tecnologia, automatizações, APIs e interfaces que entregam
+            valor real para pessoas e negócios.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projetos">Ver projetos</a>
+            <a class="button secondary" href="mailto:{{ profile.email }}">Contato</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="card-badge">Disponível para projetos</div>
+          <h3>Stack principal</h3>
+          <ul>
+            <li>Python</li>
+            <li>Flask</li>
+            <li>JavaScript</li>
+            <li>SQL</li>
+            <li>Git & GitHub</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="sobre" class="section container">
+        <div class="section-heading">
+          <span>Sobre</span>
+          <h2>Construo aplicações com foco em clareza, performance e experiência.</h2>
+        </div>
+
+        <div class="about-grid">
+          <p>
+            Desenvolvo soluções com Python, automações, APIs e dashboards para resolver
+            problemas reais. Meu trabalho combina lógica de programação, análise de dados e
+            preocupação com a experiência do usuário.
+          </p>
+          <p>
+            Abaixo estão alguns dos meus projetos públicos, com foco em criar ferramentas úteis,
+            bem documentadas e facilmente reutilizáveis.
+          </p>
+        </div>
+      </section>
+
+      <section id="projetos" class="section section-alt">
+        <div class="container">
+          <div class="section-heading">
+            <span>Projetos públicos</span>
+            <h2>Trabalhos em destaque</h2>
+          </div>
+
+          <div class="projects-grid featured">
+            {% for project in featured_projects %}
+            <article class="project-card featured-card">
+              <div class="project-top">
+                <span class="tag">Destaque</span>
+              </div>
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.description }}</p>
+              <div class="stack">
+                {% for tech in project.tech %}
+                <span>{{ tech }}</span>
+                {% endfor %}
+              </div>
+              <a href="{{ project.url }}" target="_blank" rel="noreferrer">Abrir no GitHub →</a>
+            </article>
+            {% endfor %}
+          </div>
+
+          <div class="projects-grid">
+            {% for project in other_projects %}
+            <article class="project-card">
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.description }}</p>
+              <div class="stack">
+                {% for tech in project.tech %}
+                <span>{{ tech }}</span>
+                {% endfor %}
+              </div>
+              <a href="{{ project.url }}" target="_blank" rel="noreferrer">Ver repositório →</a>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contato" class="footer">
+      <div class="container footer-content">
+        <div>
+          <h3>Vamos trabalhar juntos?</h3>
+          <p>Estou aberto a oportunidades, colaborações e projetos interessantes.</p>
+        </div>
+        <div class="footer-links">
+          <a href="{{ profile.github }}" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="{{ profile.linkedin }}" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="mailto:{{ profile.email }}">E-mail</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
