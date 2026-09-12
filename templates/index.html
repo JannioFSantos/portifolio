@@ -3,54 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meu Portfólio</title>
-    <meta
-      name="description"
-      content="Portfólio pessoal com projetos públicos em Python e desenvolvimento web."
-    />
+    <title>{{ profile.name }} · Desenvolvedor Full Stack</title>
+    <meta name="description" content="Portfólio profissional de Jannio F. Santos — desenvolvimento Full Stack, Python, automação e sistemas web." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
   </head>
   <body>
     <header class="hero">
       <nav class="nav container">
-        <div class="brand">{{ profile.name }}</div>
+        <a class="brand" href="#">JFS<span>.</span></a>
         <div class="nav-links">
           <a href="#sobre">Sobre</a>
           <a href="#projetos">Projetos</a>
+          <a href="#stack">Stack</a>
           <a href="#contato">Contato</a>
         </div>
       </nav>
 
       <div class="hero-content container">
         <div class="hero-text">
-          <span class="eyebrow">{{ profile.role }}</span>
-          <h1>Transformo ideias em projetos funcionais e impactantes.</h1>
-          <p>
-            Sou apaixonado por tecnologia, automatizações, APIs e interfaces que entregam
-            valor real para pessoas e negócios.
-          </p>
+          <div class="status"><span></span> Disponível para oportunidades</div>
+          <p class="eyebrow">{{ profile.role }}</p>
+          <h1>Desenvolvo software para resolver <span>problemas reais.</span></h1>
+          <p class="lead">Crio aplicações web, automações e ferramentas que transformam processos complexos em soluções simples, úteis e escaláveis.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#projetos">Ver projetos</a>
-            <a class="button secondary" href="mailto:{{ profile.email }}">Contato</a>
+            <a class="button primary" href="#projetos">Explorar projetos</a>
+            <a class="button secondary" href="{{ profile.github }}" target="_blank" rel="noreferrer">GitHub ↗</a>
           </div>
         </div>
 
-        <div class="hero-card">
-          <div class="card-badge">Disponível para projetos</div>
-          <h3>Stack principal</h3>
-          <ul>
-            <li>Python</li>
-            <li>Flask</li>
-            <li>JavaScript</li>
-            <li>SQL</li>
-            <li>Git & GitHub</li>
-          </ul>
+        <div class="terminal">
+          <div class="terminal-bar"><span></span><span></span><span></span><code>jannio.py</code></div>
+          <pre><span class="muted">$</span> python developer.py
+
+<span class="keyword">class</span> <span class="type">Developer</span>:
+    focus = [
+        <span class="string">"Python"</span>,
+        <span class="string">"Web Apps"</span>,
+        <span class="string">"Automation"</span>,
+        <span class="string">"APIs"</span>
+    ]
+
+    <span class="keyword">def</span> <span class="function">build</span>(self, problem):
+        <span class="keyword">return</span> solution.solve(problem)</pre>
         </div>
       </div>
     </header>
@@ -58,78 +55,76 @@
     <main>
       <section id="sobre" class="section container">
         <div class="section-heading">
-          <span>Sobre</span>
-          <h2>Construo aplicações com foco em clareza, performance e experiência.</h2>
+          <p class="section-label">01 · SOBRE</p>
+          <h2>Programação com propósito.</h2>
         </div>
-
         <div class="about-grid">
-          <p>
-            Desenvolvo soluções com Python, automações, APIs e dashboards para resolver
-            problemas reais. Meu trabalho combina lógica de programação, análise de dados e
-            preocupação com a experiência do usuário.
-          </p>
-          <p>
-            Abaixo estão alguns dos meus projetos públicos, com foco em criar ferramentas úteis,
-            bem documentadas e facilmente reutilizáveis.
-          </p>
+          <p class="about-lead">Sou desenvolvedor focado em Python, aplicações web e automação. Gosto de entender o problema antes de escrever código e transformar necessidades de negócio em ferramentas funcionais.</p>
+          <div class="about-copy">
+            <p>Minha experiência une desenvolvimento de software, processos empresariais e conhecimento da área fiscal e contábil. Isso me permite criar soluções voltadas para situações que conheço na prática.</p>
+            <p>Também mantenho projetos proprietários e soluções em desenvolvimento que não são publicados por questões de confidencialidade.</p>
+          </div>
         </div>
       </section>
 
       <section id="projetos" class="section section-alt">
         <div class="container">
-          <div class="section-heading">
-            <span>Projetos públicos</span>
-            <h2>Trabalhos em destaque</h2>
+          <div class="section-heading row-heading">
+            <div><p class="section-label">02 · PROJETOS</p><h2>Projetos públicos</h2></div>
+            <a class="all-projects" href="{{ profile.github }}" target="_blank" rel="noreferrer">Ver GitHub ↗</a>
           </div>
 
           <div class="projects-grid featured">
             {% for project in featured_projects %}
             <article class="project-card featured-card">
-              <div class="project-top">
-                <span class="tag">Destaque</span>
-              </div>
+              <div class="project-meta"><span class="project-number">0{{ loop.index }}</span><span class="tag">Em destaque</span></div>
               <h3>{{ project.title }}</h3>
               <p>{{ project.description }}</p>
               <div class="stack">
-                {% for tech in project.tech %}
-                <span>{{ tech }}</span>
-                {% endfor %}
+                {% for tech in project.tech %}<span>{{ tech }}</span>{% endfor %}
               </div>
-              <a href="{{ project.url }}" target="_blank" rel="noreferrer">Abrir no GitHub →</a>
+              <a class="project-link" href="{{ project.url }}" target="_blank" rel="noreferrer">Código no GitHub <span>↗</span></a>
             </article>
             {% endfor %}
           </div>
 
-          <div class="projects-grid">
+          <div class="projects-grid secondary-projects">
             {% for project in other_projects %}
             <article class="project-card">
+              <div class="project-meta"><span class="project-number">0{{ loop.index + featured_projects|length }}</span><span class="repo-type">Público</span></div>
               <h3>{{ project.title }}</h3>
               <p>{{ project.description }}</p>
-              <div class="stack">
-                {% for tech in project.tech %}
-                <span>{{ tech }}</span>
-                {% endfor %}
-              </div>
-              <a href="{{ project.url }}" target="_blank" rel="noreferrer">Ver repositório →</a>
+              <div class="stack">{% for tech in project.tech %}<span>{{ tech }}</span>{% endfor %}</div>
+              <a class="project-link" href="{{ project.url }}" target="_blank" rel="noreferrer">Ver repositório <span>↗</span></a>
             </article>
             {% endfor %}
           </div>
+
+          <div class="private-card">
+            <div class="lock-icon">⌘</div>
+            <div><p class="section-label">DESENVOLVIMENTO PRIVADO</p><h3>{{ private_projects_note.title }}</h3><p>{{ private_projects_note.description }}</p></div>
+            <span class="private-badge">Privado</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="stack" class="section container">
+        <div class="section-heading"><p class="section-label">03 · STACK</p><h2>Tecnologias que utilizo.</h2></div>
+        <div class="tech-grid">
+          <div><strong>Backend</strong><span>Python · Flask · Django · APIs REST</span></div>
+          <div><strong>Frontend</strong><span>HTML · CSS · JavaScript · React · Next.js</span></div>
+          <div><strong>Dados</strong><span>SQL · PostgreSQL · SQLite · Pandas</span></div>
+          <div><strong>Ferramentas</strong><span>Git · GitHub · Docker · Linux · Coolify</span></div>
         </div>
       </section>
     </main>
 
     <footer id="contato" class="footer">
       <div class="container footer-content">
-        <div>
-          <h3>Vamos trabalhar juntos?</h3>
-          <p>Estou aberto a oportunidades, colaborações e projetos interessantes.</p>
-        </div>
-        <div class="footer-links">
-          <a href="{{ profile.github }}" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="{{ profile.linkedin }}" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="mailto:{{ profile.email }}">E-mail</a>
-        </div>
+        <div><p class="section-label">04 · CONTATO</p><h2>Vamos construir algo útil?</h2><p>Aberto a oportunidades, projetos e colaborações em tecnologia.</p></div>
+        <div class="footer-links"><a href="{{ profile.github }}" target="_blank" rel="noreferrer">GitHub ↗</a><a href="{{ profile.linkedin }}" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="mailto:{{ profile.email }}">E-mail ↗</a></div>
       </div>
+      <div class="container copyright">© {{ profile.name }} · Desenvolvedor Full Stack</div>
     </footer>
   </body>
 </html>
